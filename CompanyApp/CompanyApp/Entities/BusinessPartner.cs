@@ -1,6 +1,6 @@
 ﻿namespace CompanyApp.Entities
 {
-    public class BusinessPartners : EntityBase
+    public class BusinessPartner : EntityBase
     {
         public string? Name { get; set; }
         public string? OwnerName { get; set; }

@@ -5,9 +5,9 @@ using CompanyApp.Data;
 var employeeRepository = new SqliteRepository<Employee>(new CompanyAppSqliteContext());
 employeeRepository.ItemAdded += EmployeAddedToRepository;
 employeeRepository.ItemRemove += EmployeeRemoveFromRepository;
-var bPartners = new SqliteRepository<BusinessPartners>(new CompanyAppSqliteContext());
-bPartners.ItemAdded += BPartnersAddedToRepository;
-bPartners.ItemRemove += BPartnersRemoveFromRepository;
+var businesPartners = new SqliteRepository<BusinessPartner>(new CompanyAppSqliteContext());
+businesPartners.ItemAdded += BusinesPartnersAddedToRepository;
+businesPartners.ItemRemove += BusinesPartnersRemoveFromRepository;
 
 do
 {
@@ -23,7 +23,7 @@ do
             WriteAllEmployeeToConsole(employeeRepository);
             break;
         case "2":
-            WriteAllBPartnersToConsole(bPartners);
+            WriteAllBusinesPartnersToConsole(businesPartners);
             break;
         case "3":
             AddEmployee(employeeRepository);
@@ -32,10 +32,10 @@ do
             RemoveEmployee(employeeRepository);
             break;
         case "5":
-            AddBusinessPartners(bPartners);
+            AddBusinessPartners(businesPartners);
             break;
         case "6":
-            RemoveBPartners(bPartners);
+            RemoveBPartners(businesPartners);
             break;
         case "c":
         case "C":
@@ -47,7 +47,7 @@ do
     }
 } while (true);
 
-void AddEmployee(SqliteRepository<Employee> employeeRepository)
+void AddEmployee(IRepository<Employee> repository)
 {
     Console.WriteLine("Please provide the following information in this order:\n1. Name\n2. Surname");
 
@@ -55,15 +55,15 @@ void AddEmployee(SqliteRepository<Employee> employeeRepository)
     employeeRepository.Save();
 
 }
-void AddBusinessPartners(SqliteRepository<BusinessPartners> repository)
+void AddBusinessPartners(IRepository<BusinessPartner> repository)
 {
     Console.WriteLine("Please provide the following information in this order:\n1. Name\n2. Owner Name \n3 Contact Number \n4 Description");
 
-    repository.Add(new BusinessPartners { Name = Console.ReadLine(), OwnerName = Console.ReadLine(), ContactNumber = Console.ReadLine(), Description = Console.ReadLine() });
+    repository.Add(new BusinessPartner { Name = Console.ReadLine(), OwnerName = Console.ReadLine(), ContactNumber = Console.ReadLine(), Description = Console.ReadLine() });
     repository.Save();
 
 }
-    void RemoveEmployee(SqliteRepository<Employee> repository)
+    void RemoveEmployee(IRepository<Employee> repository)
     {
         Console.WriteLine("Enter the Id of Employee you want to delete");
         try
@@ -77,7 +77,7 @@ void AddBusinessPartners(SqliteRepository<BusinessPartners> repository)
         }
     }
 
-void RemoveBPartners(SqliteRepository<BusinessPartners> repository)
+void RemoveBPartners(IRepository<BusinessPartner> repository)
 {
     Console.WriteLine("Enter the Id of Business Partners you want to delete");
     try
@@ -90,7 +90,7 @@ void RemoveBPartners(SqliteRepository<BusinessPartners> repository)
         throw new Exception("Failure: there is no such an item to remove.");
     }
 }
-void WriteAllEmployeeToConsole(SqliteRepository<Employee> employeeRepository)
+void WriteAllEmployeeToConsole(IRepository<Employee> employeeRepository)
     {
         var items = employeeRepository.GetAll();
 
@@ -108,7 +108,7 @@ void WriteAllEmployeeToConsole(SqliteRepository<Employee> employeeRepository)
         Console.ReadKey();
     }
 
-    void WriteAllBPartnersToConsole(SqliteRepository<BusinessPartners> repository)
+    void WriteAllBusinesPartnersToConsole(IRepository<BusinessPartner> repository)
     {
         var items = repository.GetAll();
 
@@ -147,7 +147,7 @@ void WriteAllEmployeeToConsole(SqliteRepository<Employee> employeeRepository)
         }
     }
 
-    void BPartnersAddedToRepository(object? sender, BusinessPartners e)
+    void BusinesPartnersAddedToRepository(object? sender, BusinessPartner e)
     {
         Console.WriteLine($"BusinessPartners added => {e.Name} To {sender?.GetType().Name}");
         String write = $"{DateTime.Now} Business Partners {e.Name} added by {sender?.GetType().Name} ";
@@ -157,7 +157,7 @@ void WriteAllEmployeeToConsole(SqliteRepository<Employee> employeeRepository)
         }
     }
 
-    void BPartnersRemoveFromRepository(object? sender, BusinessPartners e)
+    void BusinesPartnersRemoveFromRepository(object? sender, BusinessPartner e)
     {
         Console.WriteLine($"BusinessPartners remove => {e.Name} To {sender?.GetType().Name}");
         String write = $"{DateTime.Now} Business Partners {e.Name} remove by {sender?.GetType().Name} ";

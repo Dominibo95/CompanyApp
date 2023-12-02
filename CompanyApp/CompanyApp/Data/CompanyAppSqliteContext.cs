@@ -5,8 +5,8 @@ namespace CompanyApp.Data
 {
     public class CompanyAppSqliteContext : DbContext
     {
-        public DbSet<Employee> employees { get; set; }
-        public DbSet<BusinessPartners> bPartners { get; set; }
+        public DbSet<Employee> Employees { get; set; }
+        public DbSet<BusinessPartner> BusinesPartners { get; set; }
 
         public string DbPath { get; }
 

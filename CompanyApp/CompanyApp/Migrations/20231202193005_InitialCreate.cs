@@ -11,7 +11,7 @@ namespace CompanyApp.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "bPartners",
+                name: "BusinesPartners",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
@@ -23,11 +23,11 @@ namespace CompanyApp.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_bPartners", x => x.Id);
+                    table.PrimaryKey("PK_BusinesPartners", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "employees",
+                name: "Employees",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
@@ -37,7 +37,7 @@ namespace CompanyApp.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_employees", x => x.Id);
+                    table.PrimaryKey("PK_Employees", x => x.Id);
                 });
         }
 
@@ -45,10 +45,10 @@ namespace CompanyApp.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "bPartners");
+                name: "BusinesPartners");
 
             migrationBuilder.DropTable(
-                name: "employees");
+                name: "Employees");
         }
     }
 }

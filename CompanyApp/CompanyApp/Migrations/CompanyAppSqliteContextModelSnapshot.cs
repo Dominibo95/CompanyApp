@@ -16,7 +16,7 @@ namespace CompanyApp.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.0");
 
-            modelBuilder.Entity("CompanyApp.Entities.BusinessPartners", b =>
+            modelBuilder.Entity("CompanyApp.Entities.BusinessPartner", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -36,7 +36,7 @@ namespace CompanyApp.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("bPartners");
+                    b.ToTable("BusinesPartners");
                 });
 
             modelBuilder.Entity("CompanyApp.Entities.Employee", b =>
@@ -53,7 +53,7 @@ namespace CompanyApp.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("employees");
+                    b.ToTable("Employees");
                 });
 #pragma warning restore 612, 618
         }
